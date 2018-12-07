@@ -1,0 +1,25 @@
+.pbcontactmap {
+  min-width: 100px;
+  height: 400px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.category .pbcontactmap {
+  height: 150px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pbcontactmap.is-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background: lightgrey;
+}
+
+.pbcontactmap.is-loading > * {
+  padding: 1rem;
+}
