@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         map.setView([0, 0], 15);
 
         places.forEach(function (place) {
-          var marker = L.marker([place.lat, place.lon]).addTo(map);
+          var marker = L.marker([place.lat, place.lon], {link: place.link}).addTo(map).on('click', onClick);
           markers.push(marker);
         });
 
@@ -69,4 +69,17 @@ function getAll(selector) {
 
 function getOptionsData(data, id) {
   return data.contact_id == Number(this);
+}
+
+function onClick(e) {
+  var link = this.options.link;
+
+  if ( link == '' ) return; // no link according settings
+  
+  /* parse the link in the browsers native html parser, cf. https://stackoverflow.com/questions/3700326/decode-amp-back-to-in-javascript */
+  var parser = new DOMParser;
+  var dom = parser.parseFromString('<!doctype html><body>' + link, 'text/html');
+  var decodedLink = dom.body.textContent;
+  
+  location.href = decodedLink;
 }

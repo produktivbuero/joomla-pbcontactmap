@@ -74,6 +74,7 @@ class plgContentPbContactMap extends CMSPlugin
     $this->contactmap['category'] = $params->get('category', 0);
     $this->contactmap['layer'] = $params->get('layer', 1);
     $this->contactmap['showon'] = $params->get('showon', 'all');
+    $this->contactmap['link'] = $params->get('link', 1);
 
 
     // global settings object
@@ -247,6 +248,11 @@ class plgContentPbContactMap extends CMSPlugin
       return;
     }
 
+    $link = '';
+    if ($this->contactmap['link']) {
+      $link = JRoute::_('index.php?option=com_contact&view=contact&id='.$row->slug.'&catid='.$row->catid);
+    }
+
     $data = array();
     $data = array(
       'contact_id' => $place->contact_id,
@@ -255,7 +261,8 @@ class plgContentPbContactMap extends CMSPlugin
       'boundingbox' => $place->boundingbox,
       'osm_id' => $place->osm_id,
       'osm_type' => $place->osm_type,
-      'class' => $place->class
+      'class' => $place->class,
+      'link' => $link
     );
 
     $doc = JFactory::getDocument();
