@@ -10,6 +10,9 @@
   <version>0.9.0</version>
   <description>PLG_CONTENT_PBCONTACTMAP_XML_DESCRIPTION</description>
 
+  <!-- Scripts on install/update/uninstall -->
+  <scriptfile>script.php</scriptfile>
+
   <!-- Plugin files -->
   <files>
     <filename plugin="pbcontactmap">pbcontactmap.php</filename>
