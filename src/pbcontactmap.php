@@ -165,7 +165,7 @@ class plgContentPbContactMap extends CMSPlugin
     }
 
     // check data
-    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap')) ) {
+    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
       return '';
     }
     
@@ -199,7 +199,7 @@ class plgContentPbContactMap extends CMSPlugin
     }
 
     // check data
-    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap')) ) {
+    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
       return '';
     }
     
