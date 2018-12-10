@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
         map.setView([0, 0], 15);
 
         places.forEach(function (place) {
-          var marker = L.marker([place.lat, place.lon], {link: place.link}).addTo(map).on('click', onClick);
+          var marker = L.marker([place.lat, place.lon], {link: place.link}).addTo(map);
+          if (place.link != '') marker.on('click', onClick);
           if (place.name != '') marker.bindPopup(place.name, {closeButton: false}).on('mouseover', onMouseOver).on('mouseout', onMouseOut);
           markers.push(marker);
         });
@@ -75,8 +76,6 @@ function getOptionsData(data, id) {
 
 function onClick(e) {
   var link = this.options.link;
-
-  if ( link == '' ) return; // no link according settings
   
   /* parse the link in the browsers native html parser, cf. https://stackoverflow.com/questions/3700326/decode-amp-back-to-in-javascript */
   var parser = new DOMParser;
