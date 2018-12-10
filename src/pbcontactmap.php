@@ -262,7 +262,6 @@ class plgContentPbContactMap extends CMSPlugin
       $name = $row->name;
     }
 
-    $data = array();
     $data = array(
       'contact_id' => $place->contact_id,
       'lat' => $place->lat,
