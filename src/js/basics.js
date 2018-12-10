@@ -86,9 +86,6 @@ function onClick(e) {
 }
 
 function onMouseOver(e) {
-  var name = this.options.name;
-  if ( name == '' ) return; // no name according settings
-
   this.openPopup();
 }
 
