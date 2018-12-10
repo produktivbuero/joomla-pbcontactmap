@@ -247,6 +247,7 @@ class plgContentPbContactMap extends CMSPlugin
     $place = PlgContentPBContactMapHelper::getRecord($row->id);
 
     if ($place === null) {
+      $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACES'), 'warning');
       return;
     }
 
