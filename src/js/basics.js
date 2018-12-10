@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         places.forEach(function (place) {
           var marker = L.marker([place.lat, place.lon], {link: place.link}).addTo(map).on('click', onClick);
+          if (place.name != '') marker.bindPopup(place.name, {closeButton: false}).on('mouseover', onMouseOver).on('mouseout', onMouseOut);
           markers.push(marker);
         });
 
@@ -54,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
         
         map.setView([place.lat, place.lon], 15);
 
-        L.marker([place.lat, place.lon]).addTo(map);
+        var marker = L.marker([place.lat, place.lon]).addTo(map);
+        if (place.name != '') marker.bindPopup(place.name, {closeButton: false}).on('mouseover', onMouseOver).on('mouseout', onMouseOut);
       }
 
       el.classList.remove('is-loading');
@@ -82,4 +84,15 @@ function onClick(e) {
   var decodedLink = dom.body.textContent;
   
   location.href = decodedLink;
+}
+
+function onMouseOver(e) {
+  var name = this.options.name;
+  if ( name == '' ) return; // no name according settings
+
+  this.openPopup();
+}
+
+function onMouseOut(e) {
+  this.closePopup();
 }

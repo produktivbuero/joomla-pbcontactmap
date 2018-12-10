@@ -106,6 +106,17 @@
             <option value="3">OpenStreetMap.HOT</option>
             <option value="4">OpenTopoMap</option>
         </field>
+
+        <field 
+          name="name" 
+          type="radio" 
+          default="1" 
+          label="PLG_CONTENT_PBCONTACTMAP_OPTION_NAME_LABEL" 
+          description="PLG_CONTENT_PBCONTACTMAP_OPTION_NAME_DESCRIPTION" 
+          class="btn-group">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
       </fieldset>
     </fields>
   </config>
