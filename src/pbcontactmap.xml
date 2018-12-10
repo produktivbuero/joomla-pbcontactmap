@@ -79,17 +79,6 @@
           description="PLG_CONTENT_PBCONTACTMAP_OPTION_SHORTCODE_DESCRIPTION"
           class="alert alert-info"
         />
-
-        <field 
-          name="link" 
-          type="radio" 
-          default="1" 
-          label="PLG_CONTENT_PBCONTACTMAP_OPTION_LINK_LABEL" 
-          description="PLG_CONTENT_PBCONTACTMAP_OPTION_LINK_DESCRIPTION" 
-          class="btn-group">
-            <option value="1">JYES</option>
-            <option value="0">JNO</option>
-        </field>
       </fieldset>
 
       <fieldset name="SYSTEM_PBCONTACTMAP_MAP">
@@ -113,6 +102,17 @@
           default="1" 
           label="PLG_CONTENT_PBCONTACTMAP_OPTION_NAME_LABEL" 
           description="PLG_CONTENT_PBCONTACTMAP_OPTION_NAME_DESCRIPTION" 
+          class="btn-group">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field 
+          name="link" 
+          type="radio" 
+          default="1" 
+          label="PLG_CONTENT_PBCONTACTMAP_OPTION_LINK_LABEL" 
+          description="PLG_CONTENT_PBCONTACTMAP_OPTION_LINK_DESCRIPTION" 
           class="btn-group">
             <option value="1">JYES</option>
             <option value="0">JNO</option>
