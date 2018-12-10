@@ -157,7 +157,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentBeforeDisplay($context, &$row, &$params, $page=0)
   {
     // fast fail
-    if ( $this->app->isAdmin() || $context == 'com_contact.categories' ) {
+    if ( $this->app->isAdmin() || !in_array($context, $this->allowed_context) || $context == 'com_contact.categories' ) {
       return '';
     }
 
@@ -192,7 +192,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentAfterDisplay($context, &$row, &$params, $page=0)
   {
     // fast fail
-    if ( $this->app->isAdmin() || $context == 'com_contact.categories' ) {
+    if ( $this->app->isAdmin() || !in_array($context, $this->allowed_context) || $context == 'com_contact.categories' ) {
       return '';
     }
 
