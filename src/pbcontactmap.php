@@ -240,7 +240,7 @@ class plgContentPbContactMap extends CMSPlugin
     }
 
     // check settings
-    if ( $this->contactmap['showon'] == 'featured' && $row->featured == 0 ) {
+    if ( !isset($row->featured) || ($this->contactmap['showon'] == 'featured' && $row->featured == 0) ) {
       return;
     }
 
