@@ -56,6 +56,7 @@ abstract class PlgContentPBContactMapHelper
                 'state' => $row->state,
                 'country' => $row->country,
                 'format' => $format,
+                'limit' => 1
                );
     $params = http_build_query($request);
 
@@ -84,7 +85,7 @@ abstract class PlgContentPBContactMapHelper
         return $result; // no matches
       }
 
-      $place = @array_shift(array_slice($place, 0, 1)); // get only first match
+      $place = $place[0]; // get only first match
 
       $result->contact_id = $row->id;
       $result->query = $params;
