@@ -168,7 +168,6 @@ class plgContentPbContactMap extends CMSPlugin
 
     // check data
     if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
-      $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACE'), 'warning');
       return '';
     }
     
@@ -203,7 +202,6 @@ class plgContentPbContactMap extends CMSPlugin
 
     // check data
     if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
-      $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACE'), 'warning');
       return '';
     }
     
@@ -252,7 +250,6 @@ class plgContentPbContactMap extends CMSPlugin
       $place = PlgContentPBContactMapHelper::getRecord($row->id);
 
       if ($place === null) {
-        $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACES'), 'warning');
         return;
       }
 
