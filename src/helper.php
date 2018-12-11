@@ -27,34 +27,34 @@ abstract class PlgContentPBContactMapHelper
   /**
    * Request API
    *
-   * @param   object  $article  A JTableContent object
+   * @param   object  $row  A JTableContent object
    * @param   string  $format  response format [html|xml|json|jsonv2]
    *
    * @return  object
    *
    * @since   0.9.0
    */
-  public static function getApiData($article, $format = 'json')
+  public static function getApiData($row, $format = 'json')
   {
     $result = new stdClass();
 
     // required fields
-    if (empty($article->postcode) || empty($article->suburb)) {
+    if (empty($row->postcode) || empty($row->suburb)) {
       $message = PlgContentPBContactMapHelper::formatMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_ERROR_FIELDS'));
       JFactory::getApplication()->enqueueMessage($message, 'warning');
 
       return $result; // return empty
     }
     
-    $street = preg_split('/\r\n|\r|\n/',$article->address);
+    $street = preg_split('/\r\n|\r|\n/', $row->address);
     $street = end($street); // get last row of adress
 
     $request = array (
                 'street' => $street,
-                'city' => $article->suburb,
-                'postalcode' => $article->postcode,
-                'state' => $article->state,
-                'country' => $article->country,
+                'city' => $row->suburb,
+                'postalcode' => $row->postcode,
+                'state' => $row->state,
+                'country' => $row->country,
                 'format' => $format,
                );
     $params = http_build_query($request);
@@ -86,7 +86,7 @@ abstract class PlgContentPBContactMapHelper
 
       $place = @array_shift(array_slice($place, 0, 1)); // get only first match
 
-      $result->contact_id = $article->id;
+      $result->contact_id = $row->id;
       $result->query = $params;
       $place->boundingbox = @json_encode($place->boundingbox); // array to string
 
