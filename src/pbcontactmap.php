@@ -227,7 +227,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentPrepare($context, &$row, &$params, $page = 0)
   {
     // replace shortcode
-    if ( $context == 'com_contact.categories' && JString::strpos($row->text, '{plg_content_contactmap') !== false ) {
+    if ( JString::strpos($row->text, '{plg_content_contactmap') !== false ) {
       $insert = PlgContentPBContactMapHelper::getShortcode();
       
       $regex = '/{plg_content_contactmap}/im';
@@ -240,46 +240,50 @@ class plgContentPbContactMap extends CMSPlugin
     }
 
     // check settings
-    if ( $this->contactmap['showon'] == 'featured' && $row->featured == 0 ) {
+    if ( $this->contactmap['showon'] == 'featured' && isset($row->featured) && $row->featured == 0 ) {
       return;
     }
-
-    // get place
-    $place = PlgContentPBContactMapHelper::getRecord($row->id);
-
-    if ($place === null) {
-      $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACES'), 'warning');
-      return;
-    }
-
-    $link = '';
-    if ($this->contactmap['link']) {
-      $link = JRoute::_('index.php?option=com_contact&view=contact&id='.$row->slug.'&catid='.$row->catid);
-    }
-
-    $name = '';
-    if ($this->contactmap['name']) {
-      $name = $row->name;
-    }
-
-    $data = array(
-      'contact_id' => $place->contact_id,
-      'lat' => $place->lat,
-      'lon' => $place->lon,
-      'boundingbox' => $place->boundingbox,
-      'osm_id' => $place->osm_id,
-      'osm_type' => $place->osm_type,
-      'class' => $place->class,
-      'link' => $link,
-      'name' => $name
-    );
 
     $doc = JFactory::getDocument();
 
-    // global data object
-    $options = $doc->getScriptOptions('plg_content_pbcontactmap_places');
-    array_push($options, $data);
-    $doc->addScriptOptions('plg_content_pbcontactmap_places', $options);
+    // get place
+    if ( isset($row->id) )
+    {
+      $place = PlgContentPBContactMapHelper::getRecord($row->id);
+
+      if ($place === null) {
+        $this->app->enqueueMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_WARNING_NOPLACES'), 'warning');
+        return;
+      }
+
+      $link = '';
+      if ($this->contactmap['link']) {
+        $link = JRoute::_('index.php?option=com_contact&view=contact&id='.$row->slug.'&catid='.$row->catid);
+      }
+
+      $name = '';
+      if ($this->contactmap['name']) {
+        $name = $row->name;
+      }
+
+      $data = array(
+        'contact_id' => $place->contact_id,
+        'lat' => $place->lat,
+        'lon' => $place->lon,
+        'boundingbox' => $place->boundingbox,
+        'osm_id' => $place->osm_id,
+        'osm_type' => $place->osm_type,
+        'class' => $place->class,
+        'link' => $link,
+        'name' => $name
+      );
+
+
+      // global data object
+      $options = $doc->getScriptOptions('plg_content_pbcontactmap_places');
+      array_push($options, $data);
+      $doc->addScriptOptions('plg_content_pbcontactmap_places', $options);
+    }
 
     // assets
     $doc->addScript(JURI::base(true).'/media/plg_content_pbcontactmap/js/leaflet.js', array('version' => self::LEAFLET));

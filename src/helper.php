@@ -124,19 +124,24 @@ abstract class PlgContentPBContactMapHelper
    */
   public static function getRecord($contact_id)
   {
-    $db = JFactory::getDbo();
-    $query = $db->getQuery(true);
+    $result = new stdClass();
 
-    $conditions = array(
-      $db->quoteName('contact_id') . ' = ' . $contact_id
-    );
+    if ( $contact_id  )
+    {
+      $db = JFactory::getDbo();
+      $query = $db->getQuery(true);
 
-    $query->select('*');
-    $query->from($db->quoteName('#__contact_pbcontactmap'));
-    $query->where($conditions);
-    $db->setQuery($query);
+      $conditions = array(
+        $db->quoteName('contact_id') . ' = ' . $contact_id
+      );
 
-    $result = $db->loadObject();
+      $query->select('*');
+      $query->from($db->quoteName('#__contact_pbcontactmap'));
+      $query->where($conditions);
+      $db->setQuery($query);
+
+      $result = $db->loadObject();
+    }
 
     return $result;
   }
