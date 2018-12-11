@@ -15,14 +15,18 @@ defined('_JEXEC') or die;
  * @package     PB Contact Map
  * @since       0.9.1
  */
-class plgSystemPbLiveZillaInstallerScript
+class plgContentPbContactMapInstallerScript
 {
   /**
    * Constructor
    *
    * @param   JAdapterInstance  $adapter  The object responsible for running this script
    */
-  public function __construct(JAdapterInstance $adapter) {}
+  public function __construct(JAdapterInstance $adapter)
+  {
+    // helper
+    JLoader::register('PlgContentPBContactMapHelper', __DIR__ . '/helper.php');
+  }
 
 
   /**
@@ -33,13 +37,14 @@ class plgSystemPbLiveZillaInstallerScript
    *
    * @return  boolean  True on success
    */
-  public function postflight($route, JAdapterInstance $adapter) {
-    if ($route == 'install')
-    {
+  public function postflight($route, JAdapterInstance $adapter)
+  {
+    if ($route == 'install') {
       echo '<div class="alert alert-info">';
       echo '<strong>' . JText::_('PLG_CONTENT_PBCONTACTMAP') . '</strong> - ' . JText::_('PLG_CONTENT_PBCONTACTMAP_INSTALL_MESSAGE');
       echo '</div>';
     }
+
     return true;
   }
 }
