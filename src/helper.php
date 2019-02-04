@@ -34,7 +34,7 @@ abstract class PlgContentPBContactMapHelper
    *
    * @since   0.9.0
    */
-  public static function getApiData($row, $format = 'json')
+  public static function getApiData($row, $format = 'json', $install = false)
   {
     $result = new stdClass();
 
@@ -79,7 +79,24 @@ abstract class PlgContentPBContactMapHelper
 
       if (empty($place))
       {
-        $message = PlgContentPBContactMapHelper::formatMessage(JText::_('PLG_CONTENT_PBCONTACTMAP_ERROR_NOMATCH'));
+        $address = $request;
+        unset($address['format'], $address['limit']);
+        
+        if ($install)
+        {
+          $url = 'index.php?option=com_contact&view=contacts&filter[search]=' . urlencode($row->name);
+          $name = $row->name;
+        }
+        else
+        {
+          $params = http_build_query($address);
+          $url = self::ENDPOINT.'?'.$params;
+          $name = parse_url($url)['host'];
+        }
+
+        $address = implode(', ', array_filter($address, function($value) { return $value !== ''; }));
+
+        $message = PlgContentPBContactMapHelper::formatMessage(JText::sprintf('PLG_CONTENT_PBCONTACTMAP_ERROR_NOMATCH', $address, $url, $name));
         JFactory::getApplication()->enqueueMessage($message, 'warning');
 
         return $result; // no matches

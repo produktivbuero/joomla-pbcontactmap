@@ -55,7 +55,7 @@ class plgContentPbContactMapInstallerScript
         }
         
         // geocode
-        $place = PlgContentPBContactMapHelper::getApiData($row);
+        $place = PlgContentPBContactMapHelper::getApiData($row, 'json', true);
 
         // insert/update database record
         $result = PlgContentPBContactMapHelper::insertRecord($place, $row->id, true);
