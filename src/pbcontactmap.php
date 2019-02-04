@@ -106,7 +106,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentAfterSave($context, $row, $isNew)
   {
     // fast fail
-    if ( !$this->app->isAdmin() || !in_array($context, $this->allowed_context) ) {
+    if ( !$this->app->isAdmin() ) {
       return;
     }
 
