@@ -106,7 +106,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentAfterSave($context, $row, $isNew)
   {
     // fast fail
-    if ( !$this->app->isAdmin() ) {
+    if ( !$this->app->isAdmin() || $context != 'com_contact.contact' ) {
       return;
     }
 
@@ -133,7 +133,7 @@ class plgContentPbContactMap extends CMSPlugin
   public function onContentAfterDelete($context, $row)
   {
     // fast fail
-    if ( !$this->app->isAdmin() || !in_array($context, $this->allowed_context) ) {
+    if ( !$this->app->isAdmin() || $context != 'com_contact.contact' ) {
       return;
     }
 
