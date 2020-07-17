@@ -166,12 +166,15 @@ class plgContentPbContactMap extends CMSPlugin
       return '';
     }
 
+    $id = $row->id;
+    $places = JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places');
+    $key = array_search($id, array_column($places, 'contact_id'));
+
     // check data
-    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
+    if ( empty($places) || $key === false ) {
       return '';
     }
     
-    $id = $row->id;
     return PlgContentPBContactMapHelper::getShortcode($id);
   }
 
@@ -200,12 +203,15 @@ class plgContentPbContactMap extends CMSPlugin
       return '';
     }
 
+    $id = $row->id;
+    $places = JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places');
+    $key = array_search($id, array_column($places, 'contact_id'));
+
     // check data
-    if ( empty(JFactory::getDocument()->getScriptOptions('plg_content_pbcontactmap_places')) ) {
+    if ( empty($places) || $key === false ) {
       return '';
     }
     
-    $id = $row->id;
     return PlgContentPBContactMapHelper::getShortcode($id);
   }
 
