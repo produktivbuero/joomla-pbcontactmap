@@ -22,7 +22,7 @@ abstract class PlgContentPBContactMapHelper
    * SETTINGS
    * cf. https://wiki.openstreetmap.org/wiki/Nominatim
    */
-  const ENDPOINT = 'https://nominatim.openstreetmap.org/search.php';
+  const ENDPOINT = 'https://nominatim.openstreetmap.org/search';
 
   /**
    * Request API
