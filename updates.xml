@@ -16,7 +16,7 @@
     </tags>
     <maintainer>Sebastian Brümmer</maintainer>
     <maintainerurl>https://www.produktivbuero.de</maintainerurl>
-    <targetplatform name="joomla" version="3.7"/>
+    <targetplatform name="joomla" version="3.*"/>
   </update>
   <update>
     <name>Content - Contact Map</name>
@@ -34,7 +34,7 @@
     </tags>
     <maintainer>Sebastian Brümmer</maintainer>
     <maintainerurl>https://www.produktivbuero.de</maintainerurl>
-    <targetplatform name="joomla" version="3.7"/>
+    <targetplatform name="joomla" version="3.[78910]"/>
   </update>
   <update>
     <name>Content - Contact Map</name>
@@ -52,6 +52,6 @@
     </tags>
     <maintainer>Sebastian Brümmer</maintainer>
     <maintainerurl>https://www.produktivbuero.de</maintainerurl>
-    <targetplatform name="joomla" version="3.7"/>
+    <targetplatform name="joomla" version="3.[78910]"/>
   </update>
 </updates>
