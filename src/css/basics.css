@@ -1,4 +1,6 @@
 .pbcontactmap {
+  position: relative;
+  z-index: 1; /* avoid overlay issues through OSM elements */
   min-width: 100px;
   height: 400px;
   margin-top: 1em;
