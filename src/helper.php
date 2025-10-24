@@ -263,8 +263,8 @@ abstract class PlgContentPBContactMapHelper
   {
     $shortcode = '';
 
-    if ($id) $shortcode .= '<div id="pbcontactmap.id.'. $id .'" data-id="'. $id .'" class="pbcontactmap is-loading">';
-    else $shortcode .= '<div id="pbcontactmap.all" class="pbcontactmap is-loading">';
+    if ($id) $shortcode .= '<div id="pbcontactmap.id.'. $id .'" data-id="'. $id .'" class="pbcontactmap is-loading" aria-hidden="true" tabindex="-1">';
+    else $shortcode .= '<div id="pbcontactmap.all" class="pbcontactmap is-loading" aria-hidden="true" tabindex="-1">';
     $shortcode .= '<span>Open Street Map loading...</span>';
     $shortcode .= '</div>';
 

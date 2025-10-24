@@ -61,6 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       el.classList.remove('is-loading');
+      
+      el.setAttribute('tabindex', '-1');
+      el.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(item => {
+        item.setAttribute('tabindex', '-1');
+      });
     });
 
   }
